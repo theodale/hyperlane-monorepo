@@ -104,11 +104,10 @@ contract OptimisticIsm is IInterchainSecurityModule, Ownable {
 
     // *** VERIFICATION METHODS ***
 
-    /// @notice Pre-verfies a message via the current submodule and initiates the fraud window.
-    /// @dev Initialises state as a PreVerfiedMessage under the message ID in preVerifiedMessages.
+    /// @notice Provides final verification of a message.
     /// @param _metadata Metadata for the message.
     /// @param _message Formatted Hyperlane message.
-    /// @return True if the message was pre-verified.
+    /// @return True if the message was verified.
     function preVerify(bytes calldata _metadata, bytes calldata _message)
         external
         returns (bool)
