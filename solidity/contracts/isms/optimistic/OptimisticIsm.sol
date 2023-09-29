@@ -96,7 +96,7 @@ contract OptimisticIsm is IInterchainSecurityModule, Ownable {
 
     /// *** VIEW METHODS ***
 
-    /// @notice State ISM module type.
+    /// @notice States ISM module type.
     /// @return The module type as an Types enum.
     function moduleType() external pure returns (uint8) {
         return uint8(IInterchainSecurityModule.Types.OPTIMISTIC);
@@ -104,10 +104,11 @@ contract OptimisticIsm is IInterchainSecurityModule, Ownable {
 
     // *** VERIFICATION METHODS ***
 
-    /// @notice Provides final verification of a message.
+    /// @notice Pre-verfies a message via the current submodule and initiates the fraud window.
+    /// @dev Assumes message replay is prevented via logic in calling contract.
     /// @param _metadata Metadata for the message.
     /// @param _message Formatted Hyperlane message.
-    /// @return True if the message was verified.
+    /// @return True if the message was pre-verified
     function preVerify(bytes calldata _metadata, bytes calldata _message)
         external
         returns (bool)
@@ -131,11 +132,10 @@ contract OptimisticIsm is IInterchainSecurityModule, Ownable {
         return true;
     }
 
-    /// @notice Pre-verfies a message via the current submodule and initiates the fraud window.
-    /// @dev Assumes message replay is prevented via logic in calling contract.
+    /// @notice Provides final verification of a message.
     /// @param _metadata Metadata for the message.
     /// @param _message Formatted Hyperlane message.
-    /// @return True if the message is verified
+    /// @return True if the message was verified.
     function verify(bytes calldata _metadata, bytes calldata _message)
         external
         view
