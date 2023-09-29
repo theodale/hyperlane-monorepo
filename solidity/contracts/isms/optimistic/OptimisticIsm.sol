@@ -166,7 +166,8 @@ contract OptimisticIsm is IInterchainSecurityModule, Ownable {
     // *** WATCHER METHODS ***
 
     /// @notice Removes a fraudulent message designated fraudulent by watchers.
-    /// @dev This asssumes that the submodule used in pre-verify does not use the same m-of-n watcher signature quorum.
+    /// @dev Uses watcher multisig to verify that the message is fraudulent.
+    /// This asssumes that the submodule used in pre-verify does not use the same m-of-n watcher signature quorum.
     /// Otherwise, pre-verification signatures could be used to remove the same messsage.
     /// @param _metadata Metadata for the message.
     /// @param _message Formatted Hyperlane message.
