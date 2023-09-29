@@ -19,8 +19,6 @@ contract OptimisticIsm is IInterchainSecurityModule, Ownable {
 
     using Message for bytes;
 
-    // contracts/isms/optimistic/OptimisticIsm.sol
-
     /// *** STRUCTS ***
 
     // Holds pre-verified message state
